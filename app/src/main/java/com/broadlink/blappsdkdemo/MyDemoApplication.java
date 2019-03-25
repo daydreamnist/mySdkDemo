@@ -43,7 +43,7 @@ public class MyDemoApplication extends Application {
         blConfigParam.put(BLConfigParam.APP_SERVICE_ENABLE, "1");
 
         // 初始化核心库
-        BLLet.init(this, blConfigParam);
+//        BLLet.init(this, blConfigParam);
 
         String packageName = "com.broadlink.blappsdkdemo";
         String license = "4oQxAHVFYnnY7HPuDlYnm0I6pGcRvFTh/Ct2Vv+/5qZDpJJiIweBn2RUUA6oE8InRDV+XAAAAABz4LOxmXdGndIQ0J762DN4lXimLcoYN1h90T3OlpYrQrNgvm0/7+Kdmrgfawtr+QWBY+UBaf8hxk19tobFrLsFsEkbxXTfoUSQjDzWcfVjcAAAAAA=";
