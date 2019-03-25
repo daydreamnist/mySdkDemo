@@ -53,7 +53,7 @@ public class MyDemoApplication extends Application {
         String lid = BLLet.getLicenseId();
         String companyId = BLLet.getCompanyid();
 
-                // 初始化家庭库
+        // 初始化家庭库
         BLFamily.init(companyId, lid);
         // 初始化账户库
         BLAccount.init(companyId, lid);
