@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical"
+
+    tools:context="com.broadlink.mysdkdemo.activity.DeviceConfigActivity">
+
+
+    <ProgressBar
+        android:id="@+id/mPb_deviceConfig"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"/>
+
+    <EditText
+        android:id="@+id/mEt_ssId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="wifi-ssid"
+        />
+
+    <EditText
+        android:id="@+id/mEt_WF_passwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="wifi-password "
+        />
+
+    <RadioGroup
+        android:id="@+id/mRg_versions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/mRbtn_version2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="Version2" />
+
+        <RadioButton
+            android:id="@+id/mRbtn_version3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Version3" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/mBtn_deviceConfigAction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="device config" />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp">
+        <TextView
+            android:id="@+id/mTv_DeviceConfigResult"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:visibility="gone"/>
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.broadlink.blappsdkdemo;
+package com.broadlink.mysdkdemo;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

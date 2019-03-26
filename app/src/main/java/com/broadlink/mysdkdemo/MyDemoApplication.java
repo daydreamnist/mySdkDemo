@@ -1,10 +1,9 @@
-package com.broadlink.blappsdkdemo;
+package com.broadlink.mysdkdemo;
 
 import android.app.Application;
 
 import cn.com.broadlink.account.BLAccount;
 import cn.com.broadlink.base.BLConfigParam;
-import cn.com.broadlink.base.BLConstants;
 import cn.com.broadlink.family.BLFamily;
 import cn.com.broadlink.ircode.BLIRCode;
 import cn.com.broadlink.sdk.BLLet;

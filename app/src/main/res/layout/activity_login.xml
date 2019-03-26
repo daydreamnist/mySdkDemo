@@ -23,6 +23,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <android.support.v4.widget.ContentLoadingProgressBar
+                android:id="@+id/mPbar_lgin"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+                android:visibility="gone"/>
 
             <EditText
                 android:id="@+id/phoneNum"
@@ -55,6 +61,8 @@
                 android:layout_marginTop="16dp"
                 android:text="sign_in"
                 android:textStyle="bold" />
+
+
 
         </LinearLayout>
     </ScrollView>

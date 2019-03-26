@@ -1,4 +1,4 @@
-package com.broadlink.blappsdkdemo;
+package com.broadlink.mysdkdemo;
 
 import org.junit.Test;
 
