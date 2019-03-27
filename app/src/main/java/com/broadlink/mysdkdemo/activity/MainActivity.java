@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button mBtn_login;
     private Button mBtn_device_config;
+    private Button mBtn_device_probe;
     private TextView mTv_loginInfo;
     private Context mContext;
     public static final String SHARE_PREFERENCE = "mSharedPreference";
@@ -28,7 +29,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtn_login.setOnClickListener(this);
         mBtn_device_config = findViewById(R.id.mBtn_deviceConfig);
         mBtn_device_config.setOnClickListener(this);
-
+        mBtn_device_probe = findViewById(R.id.mBtn_deviceProbe);
+        mBtn_device_probe.setOnClickListener(this);
         mTv_loginInfo = findViewById(R.id.mTv_LoginInfo);
 
         mContext = MainActivity.this;
