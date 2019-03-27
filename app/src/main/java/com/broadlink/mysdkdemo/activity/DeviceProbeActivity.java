@@ -1,14 +1,17 @@
 package com.broadlink.mysdkdemo.activity;
 
+import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -144,9 +147,11 @@ public class DeviceProbeActivity extends AppCompatActivity implements View.OnCli
 
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     public void onItemLongClick(final View view, final int position) {
         PopupMenu popupMenu = new PopupMenu(this,view);
+        popupMenu.setGravity(Gravity.END);
         popupMenu.getMenuInflater().inflate(R.menu.probed_device_action,popupMenu.getMenu());
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
