@@ -1,0 +1,273 @@
+I/zygote: Rejecting re-init on previously-failed class java.lang.Class<vp>: java.lang.NoClassDefFoundError: Failed resolution of: Landroid/webkit/SafeBrowsingResponse;
+        at void com.android.webview.chromium.WebViewChromium.init(java.util.Map, boolean) (PG:53)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet, int, int, java.util.Map, boolean) (WebView.java:651)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet, int, int) (WebView.java:581)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet, int) (WebView.java:564)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet) (WebView.java:551)
+        at void org.apache.cordova.engine.SystemWebView.<init>(android.content.Context, android.util.AttributeSet) (SystemWebView.java:47)
+        at java.lang.Object java.lang.reflect.Constructor.newInstance0(java.lang.Object[]) (Constructor.java:-2)
+        at java.lang.Object java.lang.reflect.Constructor.newInstance(java.lang.Object[]) (Constructor.java:334)
+        at android.view.View android.view.LayoutInflater.createView(java.lang.String, java.lang.String, android.util.AttributeSet) (LayoutInflater.java:647)
+        at android.view.View android.view.LayoutInflater.createViewFromTag(android.view.View, java.lang.String, android.content.Context, android.util.AttributeSet, boolean) (LayoutInflater.java:790)
+        at android.view.View android.view.LayoutInflater.createViewFromTag(android.view.View, java.lang.String, android.content.Context, android.util.AttributeSet) (LayoutInflater.java:730)
+        at void android.view.LayoutInflater.rInflate(org.xmlpull.v1.XmlPullParser, android.view.View, android.content.Context, android.util.AttributeSet, boolean) (LayoutInflater.java:863)
+        at void android.view.LayoutInflater.rInflateChildren(org.xmlpull.v1.XmlPullParser, android.view.View, android.util.AttributeSet, boolean) (LayoutInflater.java:824)
+        at android.view.View android.view.LayoutInflater.inflate(org.xmlpull.v1.XmlPullParser, android.view.ViewGroup, boolean) (LayoutInflater.java:515)
+        at android.view.View android.view.LayoutInflater.inflate(int, android.view.ViewGroup, boolean) (LayoutInflater.java:423)
+        at android.view.View android.view.LayoutInflater.inflate(int, android.view.ViewGroup) (LayoutInflater.java:374)
+        at void android.support.v7.app.AppCompatDelegateImpl.setContentView(int) (AppCompatDelegateImpl.java:469)
+        at void android.support.v7.app.AppCompatActivity.setContentView(int) (AppCompatActivity.java:140)
+        at void com.broadlink.mysdkdemo.activity.WebControlActivity.onCreate(android.os.Bundle) (WebControlActivity.java:41)
+        at void android.app.Activity.performCreate(android.os.Bundle) (Activity.java:6975)
+        at void android.app.Instrumentation.callActivityOnCreate(android.app.Activity, android.os.Bundle) (Instrumentation.java:1214)
+        at android.app.Activity android.app.ActivityThread.performLaunchActivity(android.app.ActivityThread$ActivityClientRecord, android.content.Intent) (ActivityThread.java:2778)
+        at void android.app.ActivityThread.handleLaunchActivity(android.app.ActivityThread$ActivityClientRecord, android.content.Intent, java.lang.String) (ActivityThread.java:2900)
+        at void android.app.ActivityThread.-wrap11(android.app.ActivityThread, android.app.ActivityThread$ActivityClientRecord, android.content.Intent, java.lang.String) (ActivityThread.java:-1)
+        at void android.app.ActivityThread$H.handleMessage(android.os.Message) (ActivityThread.java:1601)
+        at void android.os.Handler.dispatchMessage(android.os.Message) (Handler.java:105)
+        at void android.os.Looper.loop() (Looper.java:251)
+        at void android.app.ActivityThread.main(java.lang.String[]) (ActivityThread.java:6589)
+        at java.lang.Object java.lang.reflect.Method.invoke(java.lang.Object, java.lang.Object[]) (Method.java:-2)
+        at void com.android.internal.os.Zygote$MethodAndArgsCaller.run() (Zygote.java:240)
+        at void com.android.internal.os.ZygoteInit.main(java.lang.String[]) (ZygoteInit.java:767)
+    Caused by: java.lang.ClassNotFoundException: Didn't find class "android.webkit.SafeBrowsingResponse" on path: DexPathList[[zip file "/system/app/Chrome/Chrome.apk"],nativeLibraryDirectories=[/system/app/Chrome/lib/arm, /system/app/Chrome/Chrome.apk!/lib/armeabi-v7a, /system/lib, /system/vendor/lib, /system/lib, /system/vendor/lib]]
+        at java.lang.Class dalvik.system.BaseDexClassLoader.findClass(java.lang.String) (BaseDexClassLoader.java:93)
+        at java.lang.Class java.lang.ClassLoader.loadClass(java.lang.String, boolean) (ClassLoader.java:379)
+        at java.lang.Class java.lang.ClassLoader.loadClass(java.lang.String) (ClassLoader.java:312)
+        at void com.android.webview.chromium.WebViewChromium.init(java.util.Map, boolean) (PG:53)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet, int, int, java.util.Map, boolean) (WebView.java:651)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet, int, int) (WebView.java:581)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet, int) (WebView.java:564)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet) (WebView.java:551)
+        at void org.apache.cordova.engine.SystemWebView.<init>(android.content.Context, android.util.AttributeSet) (SystemWebView.java:47)
+        at java.lang.Object java.lang.reflect.Constructor.newInstance0(java.lang.Object[]) (Constructor.java:-2)
+        at java.lang.Object java.lang.reflect.Constructor.newInstance(java.lang.Object[]) (Constructor.java:334)
+I/zygote:     at android.view.View android.view.LayoutInflater.createView(java.lang.String, java.lang.String, android.util.AttributeSet) (LayoutInflater.java:647)
+        at android.view.View android.view.LayoutInflater.createViewFromTag(android.view.View, java.lang.String, android.content.Context, android.util.AttributeSet, boolean) (LayoutInflater.java:790)
+        at android.view.View android.view.LayoutInflater.createViewFromTag(android.view.View, java.lang.String, android.content.Context, android.util.AttributeSet) (LayoutInflater.java:730)
+        at void android.view.LayoutInflater.rInflate(org.xmlpull.v1.XmlPullParser, android.view.View, android.content.Context, android.util.AttributeSet, boolean) (LayoutInflater.java:863)
+        at void android.view.LayoutInflater.rInflateChildren(org.xmlpull.v1.XmlPullParser, android.view.View, android.util.AttributeSet, boolean) (LayoutInflater.java:824)
+        at android.view.View android.view.LayoutInflater.inflate(org.xmlpull.v1.XmlPullParser, android.view.ViewGroup, boolean) (LayoutInflater.java:515)
+        at android.view.View android.view.LayoutInflater.inflate(int, android.view.ViewGroup, boolean) (LayoutInflater.java:423)
+        at android.view.View android.view.LayoutInflater.inflate(int, android.view.ViewGroup) (LayoutInflater.java:374)
+        at void android.support.v7.app.AppCompatDelegateImpl.setContentView(int) (AppCompatDelegateImpl.java:469)
+        at void android.support.v7.app.AppCompatActivity.setContentView(int) (AppCompatActivity.java:140)
+        at void com.broadlink.mysdkdemo.activity.WebControlActivity.onCreate(android.os.Bundle) (WebControlActivity.java:41)
+        at void android.app.Activity.performCreate(android.os.Bundle) (Activity.java:6975)
+        at void android.app.Instrumentation.callActivityOnCreate(android.app.Activity, android.os.Bundle) (Instrumentation.java:1214)
+        at android.app.Activity android.app.ActivityThread.performLaunchActivity(android.app.ActivityThread$ActivityClientRecord, android.content.Intent) (ActivityThread.java:2778)
+        at void android.app.ActivityThread.handleLaunchActivity(android.app.ActivityThread$ActivityClientRecord, android.content.Intent, java.lang.String) (ActivityThread.java:2900)
+        at void android.app.ActivityThread.-wrap11(android.app.ActivityThread, android.app.ActivityThread$ActivityClientRecord, android.content.Intent, java.lang.String) (ActivityThread.java:-1)
+        at void android.app.ActivityThread$H.handleMessage(android.os.Message) (ActivityThread.java:1601)
+        at void android.os.Handler.dispatchMessage(android.os.Message) (Handler.java:105)
+        at void android.os.Looper.loop() (Looper.java:251)
+        at void android.app.ActivityThread.main(java.lang.String[]) (ActivityThread.java:6589)
+        at java.lang.Object java.lang.reflect.Method.invoke(java.lang.Object, java.lang.Object[]) (Method.java:-2)
+        at void com.android.internal.os.Zygote$MethodAndArgsCaller.run() (Zygote.java:240)
+        at void com.android.internal.os.ZygoteInit.main(java.lang.String[]) (ZygoteInit.java:767)
+I/zygote: Rejecting re-init on previously-failed class java.lang.Class<vp>: java.lang.NoClassDefFoundError: Failed resolution of: Landroid/webkit/SafeBrowsingResponse;
+        at void com.android.webview.chromium.WebViewChromium.init(java.util.Map, boolean) (PG:53)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet, int, int, java.util.Map, boolean) (WebView.java:651)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet, int, int) (WebView.java:581)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet, int) (WebView.java:564)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet) (WebView.java:551)
+        at void org.apache.cordova.engine.SystemWebView.<init>(android.content.Context, android.util.AttributeSet) (SystemWebView.java:47)
+        at java.lang.Object java.lang.reflect.Constructor.newInstance0(java.lang.Object[]) (Constructor.java:-2)
+        at java.lang.Object java.lang.reflect.Constructor.newInstance(java.lang.Object[]) (Constructor.java:334)
+        at android.view.View android.view.LayoutInflater.createView(java.lang.String, java.lang.String, android.util.AttributeSet) (LayoutInflater.java:647)
+        at android.view.View android.view.LayoutInflater.createViewFromTag(android.view.View, java.lang.String, android.content.Context, android.util.AttributeSet, boolean) (LayoutInflater.java:790)
+        at android.view.View android.view.LayoutInflater.createViewFromTag(android.view.View, java.lang.String, android.content.Context, android.util.AttributeSet) (LayoutInflater.java:730)
+        at void android.view.LayoutInflater.rInflate(org.xmlpull.v1.XmlPullParser, android.view.View, android.content.Context, android.util.AttributeSet, boolean) (LayoutInflater.java:863)
+        at void android.view.LayoutInflater.rInflateChildren(org.xmlpull.v1.XmlPullParser, android.view.View, android.util.AttributeSet, boolean) (LayoutInflater.java:824)
+        at android.view.View android.view.LayoutInflater.inflate(org.xmlpull.v1.XmlPullParser, android.view.ViewGroup, boolean) (LayoutInflater.java:515)
+        at android.view.View android.view.LayoutInflater.inflate(int, android.view.ViewGroup, boolean) (LayoutInflater.java:423)
+        at android.view.View android.view.LayoutInflater.inflate(int, android.view.ViewGroup) (LayoutInflater.java:374)
+        at void android.support.v7.app.AppCompatDelegateImpl.setContentView(int) (AppCompatDelegateImpl.java:469)
+        at void android.support.v7.app.AppCompatActivity.setContentView(int) (AppCompatActivity.java:140)
+        at void com.broadlink.mysdkdemo.activity.WebControlActivity.onCreate(android.os.Bundle) (WebControlActivity.java:41)
+        at void android.app.Activity.performCreate(android.os.Bundle) (Activity.java:6975)
+        at void android.app.Instrumentation.callActivityOnCreate(android.app.Activity, android.os.Bundle) (Instrumentation.java:1214)
+        at android.app.Activity android.app.ActivityThread.performLaunchActivity(android.app.ActivityThread$ActivityClientRecord, android.content.Intent) (ActivityThread.java:2778)
+        at void android.app.ActivityThread.handleLaunchActivity(android.app.ActivityThread$ActivityClientRecord, android.content.Intent, java.lang.String) (ActivityThread.java:2900)
+        at void android.app.ActivityThread.-wrap11(android.app.ActivityThread, android.app.ActivityThread$ActivityClientRecord, android.content.Intent, java.lang.String) (ActivityThread.java:-1)
+        at void android.app.ActivityThread$H.handleMessage(android.os.Message) (ActivityThread.java:1601)
+        at void android.os.Handler.dispatchMessage(android.os.Message) (Handler.java:105)
+        at void android.os.Looper.loop() (Looper.java:251)
+        at void android.app.ActivityThread.main(java.lang.String[]) (ActivityThread.java:6589)
+        at java.lang.Object java.lang.reflect.Method.invoke(java.lang.Object, java.lang.Object[]) (Method.java:-2)
+        at void com.android.internal.os.Zygote$MethodAndArgsCaller.run() (Zygote.java:240)
+        at void com.android.internal.os.ZygoteInit.main(java.lang.String[]) (ZygoteInit.java:767)
+    Caused by: java.lang.ClassNotFoundException: Didn't find class "android.webkit.SafeBrowsingResponse" on path: DexPathList[[zip file "/system/app/Chrome/Chrome.apk"],nativeLibraryDirectories=[/system/app/Chrome/lib/arm, /system/app/Chrome/Chrome.apk!/lib/armeabi-v7a, /system/lib, /system/vendor/lib, /system/lib, /system/vendor/lib]]
+        at java.lang.Class dalvik.system.BaseDexClassLoader.findClass(java.lang.String) (BaseDexClassLoader.java:93)
+        at java.lang.Class java.lang.ClassLoader.loadClass(java.lang.String, boolean) (ClassLoader.java:379)
+        at java.lang.Class java.lang.ClassLoader.loadClass(java.lang.String) (ClassLoader.java:312)
+        at void com.android.webview.chromium.WebViewChromium.init(java.util.Map, boolean) (PG:53)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet, int, int, java.util.Map, boolean) (WebView.java:651)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet, int, int) (WebView.java:581)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet, int) (WebView.java:564)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet) (WebView.java:551)
+        at void org.apache.cordova.engine.SystemWebView.<init>(android.content.Context, android.util.AttributeSet) (SystemWebView.java:47)
+        at java.lang.Object java.lang.reflect.Constructor.newInstance0(java.lang.Object[]) (Constructor.java:-2)
+        at java.lang.Object java.lang.reflect.Constructor.newInstance(java.lang.Object[]) (Constructor.java:334)
+        at android.view.View android.view.LayoutInflater.createView(java.lang.String, java.lang.String, android.util.AttributeSet) (LayoutInflater.java:647)
+        at android.view.View android.view.LayoutInflater.createViewFromTag(android.view.View, java.lang.String, android.content.Context, android.util.AttributeSet, boolean) (LayoutInflater.java:790)
+        at android.view.View android.view.LayoutInflater.createViewFromTag(android.view.View, java.lang.String, android.content.Context, android.util.AttributeSet) (LayoutInflater.java:730)
+        at void android.view.LayoutInflater.rInflate(org.xmlpull.v1.XmlPullParser, android.view.View, android.content.Context, android.util.AttributeSet, boolean) (LayoutInflater.java:863)
+        at void android.view.LayoutInflater.rInflateChildren(org.xmlpull.v1.XmlPullParser, android.view.View, android.util.AttributeSet, boolean) (LayoutInflater.java:824)
+        at android.view.View android.view.LayoutInflater.inflate(org.xmlpull.v1.XmlPullParser, android.view.ViewGroup, boolean) (LayoutInflater.java:515)
+        at android.view.View android.view.LayoutInflater.inflate(int, android.view.ViewGroup, boolean) (LayoutInflater.java:423)
+        at android.view.View android.view.LayoutInflater.inflate(int, android.view.ViewGroup) (LayoutInflater.java:374)
+        at void android.support.v7.app.AppCompatDelegateImpl.setContentView(int) (AppCompatDelegateImpl.java:469)
+        at void android.support.v7.app.AppCompatActivity.setContentView(int) (AppCompatActivity.java:140)
+        at void com.broadlink.mysdkdemo.activity.WebControlActivity.onCreate(android.os.Bundle) (WebControlActivity.java:41)
+        at void android.app.Activity.performCreate(android.os.Bundle) (Activity.java:6975)
+        at void android.app.Instrumentation.callActivityOnCreate(android.app.Activity, android.os.Bundle) (Instrumentation.java:1214)
+        at android.app.Activity android.app.ActivityThread.performLaunchActivity(android.app.ActivityThread$ActivityClientRecord, android.content.Intent) (ActivityThread.java:2778)
+        at void android.app.ActivityThread.handleLaunchActivity(android.app.ActivityThread$ActivityClientRecord, android.content.Intent, java.lang.String) (ActivityThread.java:2900)
+        at void android.app.ActivityThread.-wrap11(android.app.ActivityThread, android.app.ActivityThread$ActivityClientRecord, android.content.Intent, java.lang.String) (ActivityThread.java:-1)
+        at void android.app.ActivityThread$H.handleMessage(android.os.Message) (ActivityThread.java:1601)
+        at void android.os.Handler.dispatchMessage(android.os.Message) (Handler.java:105)
+        at void android.os.Looper.loop() (Looper.java:251)
+        at void android.app.ActivityThread.main(java.lang.String[]) (ActivityThread.java:6589)
+        at java.lang.Object java.lang.reflect.Method.invoke(java.lang.Object, java.lang.Object[]) (Method.java:-2)
+        at void com.android.internal.os.Zygote$MethodAndArgsCaller.run() (Zygote.java:240)
+        at void com.android.internal.os.ZygoteInit.main(java.lang.String[]) (ZygoteInit.java:767)
+I/zygote: Rejecting re-init on previously-failed class java.lang.Class<vp>: java.lang.NoClassDefFoundError: Failed resolution of: Landroid/webkit/SafeBrowsingResponse;
+        at void com.android.webview.chromium.WebViewChromium.init(java.util.Map, boolean) (PG:53)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet, int, int, java.util.Map, boolean) (WebView.java:651)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet, int, int) (WebView.java:581)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet, int) (WebView.java:564)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet) (WebView.java:551)
+        at void org.apache.cordova.engine.SystemWebView.<init>(android.content.Context, android.util.AttributeSet) (SystemWebView.java:47)
+        at java.lang.Object java.lang.reflect.Constructor.newInstance0(java.lang.Object[]) (Constructor.java:-2)
+        at java.lang.Object java.lang.reflect.Constructor.newInstance(java.lang.Object[]) (Constructor.java:334)
+        at android.view.View android.view.LayoutInflater.createView(java.lang.String, java.lang.String, android.util.AttributeSet) (LayoutInflater.java:647)
+        at android.view.View android.view.LayoutInflater.createViewFromTag(android.view.View, java.lang.String, android.content.Context, android.util.AttributeSet, boolean) (LayoutInflater.java:790)
+        at android.view.View android.view.LayoutInflater.createViewFromTag(android.view.View, java.lang.String, android.content.Context, android.util.AttributeSet) (LayoutInflater.java:730)
+        at void android.view.LayoutInflater.rInflate(org.xmlpull.v1.XmlPullParser, android.view.View, android.content.Context, android.util.AttributeSet, boolean) (LayoutInflater.java:863)
+        at void android.view.LayoutInflater.rInflateChildren(org.xmlpull.v1.XmlPullParser, android.view.View, android.util.AttributeSet, boolean) (LayoutInflater.java:824)
+        at android.view.View android.view.LayoutInflater.inflate(org.xmlpull.v1.XmlPullParser, android.view.ViewGroup, boolean) (LayoutInflater.java:515)
+        at android.view.View android.view.LayoutInflater.inflate(int, android.view.ViewGroup, boolean) (LayoutInflater.java:423)
+        at android.view.View android.view.LayoutInflater.inflate(int, android.view.ViewGroup) (LayoutInflater.java:374)
+        at void android.support.v7.app.AppCompatDelegateImpl.setContentView(int) (AppCompatDelegateImpl.java:469)
+        at void android.support.v7.app.AppCompatActivity.setContentView(int) (AppCompatActivity.java:140)
+        at void com.broadlink.mysdkdemo.activity.WebControlActivity.onCreate(android.os.Bundle) (WebControlActivity.java:41)
+        at void android.app.Activity.performCreate(android.os.Bundle) (Activity.java:6975)
+        at void android.app.Instrumentation.callActivityOnCreate(android.app.Activity, android.os.Bundle) (Instrumentation.java:1214)
+        at android.app.Activity android.app.ActivityThread.performLaunchActivity(android.app.ActivityThread$ActivityClientRecord, android.content.Intent) (ActivityThread.java:2778)
+        at void android.app.ActivityThread.handleLaunchActivity(android.app.ActivityThread$ActivityClientRecord, android.content.Intent, java.lang.String) (ActivityThread.java:2900)
+        at void android.app.ActivityThread.-wrap11(android.app.ActivityThread, android.app.ActivityThread$ActivityClientRecord, android.content.Intent, java.lang.String) (ActivityThread.java:-1)
+        at void android.app.ActivityThread$H.handleMessage(android.os.Message) (ActivityThread.java:1601)
+        at void android.os.Handler.dispatchMessage(android.os.Message) (Handler.java:105)
+        at void android.os.Looper.loop() (Looper.java:251)
+        at void android.app.ActivityThread.main(java.lang.String[]) (ActivityThread.java:6589)
+        at java.lang.Object java.lang.reflect.Method.invoke(java.lang.Object, java.lang.Object[]) (Method.java:-2)
+        at void com.android.internal.os.Zygote$MethodAndArgsCaller.run() (Zygote.java:240)
+        at void com.android.internal.os.ZygoteInit.main(java.lang.String[]) (ZygoteInit.java:767)
+    Caused by: java.lang.ClassNotFoundException: Didn't find class "android.webkit.SafeBrowsingResponse" on path: DexPathList[[zip file "/system/app/Chrome/Chrome.apk"],nativeLibraryDirectories=[/system/app/Chrome/lib/arm, /system/app/Chrome/Chrome.apk!/lib/armeabi-v7a, /system/lib, /system/vendor/lib, /system/lib, /system/vendor/lib]]
+        at java.lang.Class dalvik.system.BaseDexClassLoader.findClass(java.lang.String) (BaseDexClassLoader.java:93)
+        at java.lang.Class java.lang.ClassLoader.loadClass(java.lang.String, boolean) (ClassLoader.java:379)
+        at java.lang.Class java.lang.ClassLoader.loadClass(java.lang.String) (ClassLoader.java:312)
+        at void com.android.webview.chromium.WebViewChromium.init(java.util.Map, boolean) (PG:53)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet, int, int, java.util.Map, boolean) (WebView.java:651)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet, int, int) (WebView.java:581)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet, int) (WebView.java:564)
+        at void android.webkit.WebView.<init>(android.content.Context, android.util.AttributeSet) (WebView.java:551)
+        at void org.apache.cordova.engine.SystemWebView.<init>(android.content.Context, android.util.AttributeSet) (SystemWebView.java:47)
+        at java.lang.Object java.lang.reflect.Constructor.newInstance0(java.lang.Object[]) (Constructor.java:-2)
+        at java.lang.Object java.lang.reflect.Constructor.newInstance(java.lang.Object[]) (Constructor.java:334)
+        at android.view.View android.view.LayoutInflater.createView(java.lang.String, java.lang.String, android.util.AttributeSet) (LayoutInflater.java:647)
+        at android.view.View android.view.LayoutInflater.createViewFromTag(android.view.View, java.lang.String, android.content.Context, android.util.AttributeSet, boolean) (LayoutInflater.java:790)
+        at android.view.View android.view.LayoutInflater.createViewFromTag(android.view.View, java.lang.String, android.content.Context, android.util.AttributeSet) (LayoutInflater.java:730)
+        at void android.view.LayoutInflater.rInflate(org.xmlpull.v1.XmlPullParser, android.view.View, android.content.Context, android.util.AttributeSet, boolean) (LayoutInflater.java:863)
+        at void android.view.LayoutInflater.rInflateChildren(org.xmlpull.v1.XmlPullParser, android.view.View, android.util.AttributeSet, boolean) (LayoutInflater.java:824)
+        at android.view.View android.view.LayoutInflater.inflate(org.xmlpull.v1.XmlPullParser, android.view.ViewGroup, boolean) (LayoutInflater.java:515)
+        at android.view.View android.view.LayoutInflater.inflate(int, android.view.ViewGroup, boolean) (LayoutInflater.java:423)
+        at android.view.View android.view.LayoutInflater.inflate(int, android.view.ViewGroup) (LayoutInflater.java:374)
+        at void android.support.v7.app.AppCompatDelegateImpl.setContentView(int) (AppCompatDelegateImpl.java:469)
+        at void android.support.v7.app.AppCompatActivity.setContentView(int) (AppCompatActivity.java:140)
+        at void com.broadlink.mysdkdemo.activity.WebControlActivity.onCreate(android.os.Bundle) (WebControlActivity.java:41)
+        at void android.app.Activity.performCreate(android.os.Bundle) (Activity.java:6975)
+        at void android.app.Instrumentation.callActivityOnCreate(android.app.Activity, android.os.Bundle) (Instrumentation.java:1214)
+        at android.app.Activity android.app.ActivityThread.performLaunchActivity(android.app.ActivityThread$ActivityClientRecord, android.content.Intent) (ActivityThread.java:2778)
+        at void android.app.ActivityThread.handleLaunchActivity(android.app.ActivityThread$ActivityClientRecord, android.content.Intent, java.lang.String) (ActivityThread.java:2900)
+        at void android.app.ActivityThread.-wrap11(android.app.ActivityThread, android.app.ActivityThread$ActivityClientRecord, android.content.Intent, java.lang.String) (ActivityThread.java:-1)
+        at void android.app.ActivityThread$H.handleMessage(android.os.Message) (ActivityThread.java:1601)
+        at void android.os.Handler.dispatchMessage(android.os.Message) (Handler.java:105)
+        at void android.os.Looper.loop() (Looper.java:251)
+        at void android.app.ActivityThread.main(java.lang.String[]) (ActivityThread.java:6589)
+        at java.lang.Object java.lang.reflect.Method.invoke(java.lang.Object, java.lang.Object[]) (Method.java:-2)
+        at void com.android.internal.os.Zygote$MethodAndArgsCaller.run() (Zygote.java:240)
+        at void com.android.internal.os.ZygoteInit.main(java.lang.String[]) (ZygoteInit.java:767)
+D/WebControlActivity: null
+    null
+D/WebControlActivity: {"did":"00000000000000000000b4430def20bd","extend":"{\"protocol\":1}","freshStateTime":1553767675435,"id":0,"lanaddr":"192.168.43.254@80","lock":false,"mac":"b4:43:0d:ef:20:bd","name":"智能插座","newconfig":false,"password":23248038,"pid":"00000000000000000000000071940000","roomtype":-1,"state":1,"type":38001}
+E/chromium: [ERROR:devtools_http_handler.cc(292)] Cannot start http server for devtools. Stop devtools.
+W/cr_media: Requires BLUETOOTH permission
+W/AudioCapabilities: Unsupported mime audio/evrc
+W/AudioCapabilities: Unsupported mime audio/qcelp
+W/VideoCapabilities: Unrecognized profile 2130706433 for video/avc
+W/Utils: could not parse long range '175-174'
+W/AudioCapabilities: Unsupported mime audio/qcelp
+W/AudioCapabilities: Unsupported mime audio/evrc
+W/VideoCapabilities: Unsupported mime video/mp4v-esdp
+D/WebControlActivity: id-onPageStarted
+    data-file:///storage/emulated/0/Android/data/com.broadlink.myappsdkdemo/cache/let/ui/00000000000000000000000071940000/zh-cn/app.html
+I/VideoCapabilities: Unsupported profile 4 for video/mp4v-es
+D/OpenGLRenderer: endAllActiveAnimators on 0xcb004f80 (MenuPopupWindow$MenuDropDownListView) with handle 0xcba8ac50
+D/WebControlActivity: id-onPageFinished
+    data-file:///storage/emulated/0/Android/data/com.broadlink.myappsdkdemo/cache/let/ui/00000000000000000000000071940000/zh-cn/app.html
+E/chromium: [ERROR:gl_context_virtual.cc(39)] Trying to make virtual context current without decoder.
+E/ActivityThread: Activity com.broadlink.mysdkdemo.activity.WebControlActivity has leaked IntentReceiver org.apache.cordova.engine.SystemWebViewEngine$2@a4d9b49 that was originally registered here. Are you missing a call to unregisterReceiver()?
+    android.app.IntentReceiverLeaked: Activity com.broadlink.mysdkdemo.activity.WebControlActivity has leaked IntentReceiver org.apache.cordova.engine.SystemWebViewEngine$2@a4d9b49 that was originally registered here. Are you missing a call to unregisterReceiver()?
+        at android.app.LoadedApk$ReceiverDispatcher.<init>(LoadedApk.java:1333)
+        at android.app.LoadedApk.getReceiverDispatcher(LoadedApk.java:1114)
+        at android.app.ContextImpl.registerReceiverInternal(ContextImpl.java:1412)
+        at android.app.ContextImpl.registerReceiver(ContextImpl.java:1385)
+        at android.app.ContextImpl.registerReceiver(ContextImpl.java:1373)
+        at android.content.ContextWrapper.registerReceiver(ContextWrapper.java:603)
+        at org.apache.cordova.engine.SystemWebViewEngine.initWebViewSettings(SystemWebViewEngine.java:238)
+        at org.apache.cordova.engine.SystemWebViewEngine.init(SystemWebViewEngine.java:108)
+        at org.apache.cordova.CordovaWebViewImpl.init(CordovaWebViewImpl.java:110)
+        at com.broadlink.mysdkdemo.activity.WebControlActivity.initView(WebControlActivity.java:66)
+        at com.broadlink.mysdkdemo.activity.WebControlActivity.onCreate(WebControlActivity.java:47)
+        at android.app.Activity.performCreate(Activity.java:6975)
+        at android.app.Instrumentation.callActivityOnCreate(Instrumentation.java:1214)
+        at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2778)
+        at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:2900)
+        at android.app.ActivityThread.-wrap11(Unknown Source:0)
+        at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1601)
+        at android.os.Handler.dispatchMessage(Handler.java:105)
+        at android.os.Looper.loop(Looper.java:251)
+        at android.app.ActivityThread.main(ActivityThread.java:6589)
+        at java.lang.reflect.Method.invoke(Native Method)
+        at com.android.internal.os.Zygote$MethodAndArgsCaller.run(Zygote.java:240)
+        at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:767)
+W/View: dispatchProvideAutofillStructure(): not laid out, ignoring
+W/View: dispatchProvideAutofillStructure(): not laid out, ignoring
+I/AssistStructure: Flattened final assist data: 3104 bytes, containing 1 windows, 12 views
+D/OpenGLRenderer: endAllActiveAnimators on 0xccf97f00 (RippleDrawable) with handle 0xe8d9f7f0
+W/View: dispatchProvideAutofillStructure(): not laid out, ignoring
+W/View: dispatchProvideAutofillStructure(): not laid out, ignoring
+I/AssistStructure: Flattened final assist data: 3104 bytes, containing 1 windows, 12 views
+I/zygote: Do full code cache collection, code=506KB, data=400KB
+I/zygote: After code cache collection, code=505KB, data=347KB
+D/BROADLINK_LET_SDK_LOG: Json Param: {"phone":"15161172821","password":"e7b8bd16d6022c181adcf35c47377eb34efae76f","companyid":"b0491bc574dfa144908c3cd671f56370","lid":"e284310075456279d8ec73ee0e56279b"}
+D/BROADLINK_LET_SDK_LOG: Http Url: https://e284310075456279d8ec73ee0e56279bappservice.ibroadlink.com/account/login
+    Http Method: POST
+I/zygote: Do partial code cache collection, code=505KB, data=353KB
+D/NetworkSecurityConfig: No Network Security Config specified, using platform default
+I/zygote: After code cache collection, code=505KB, data=353KB
+    Increasing code cache capacity to 2MB
+D/BROADLINK_LET_SDK_LOG: post: 200
+D/BROADLINK_LET_SDK_LOG: Http Return: {"error":0,"status":0,"msg":"ok","userid":"0a142d090f441a5af69f90cb379a2a47","companyid":"b0491bc574dfa144908c3cd671f56370","lid":"","nickname":"","iconpath":"","sex":"","loginsession":"919710ed552182dfbf4169ae726d035b","logintime":"2019-03-28T18:16:00+08:00","loginip":"117.136.35.83","fname":"","lname":"","usertype":"","phone":"15161172821","email":"","flag":1,"birthday":"0000-00-00 00:00:00","pwdflag":3,"countrycode":""}
+D/BROADLINK_LET_SDK_LOG: onLogin userId: 0a142d090f441a5af69f90cb379a2a47 session: 919710ed552182dfbf4169ae726d035b
+W/View: dispatchProvideAutofillStructure(): not laid out, ignoring
+I/chatty: uid=10208(u0_a208) com.broadlink.myappsdkdemo identical 1 line
+W/View: dispatchProvideAutofillStructure(): not laid out, ignoring
+I/AssistStructure: Flattened final assist data: 3812 bytes, containing 1 windows, 14 views
+D/OpenGLRenderer: endAllActiveAnimators on 0xcb220b00 (RippleDrawable) with handle 0xdf230410
+W/View: dispatchProvideAutofillStructure(): not laid out, ignoring
+W/View: dispatchProvideAutofillStructure(): not laid out, ignoring
+I/AssistStructure: Flattened final assist data: 2472 bytes, containing 1 windows, 10 views
+D/OpenGLRenderer: endAllActiveAnimators on 0xcb220e80 (RippleDrawable) with handle 0xcbafec60

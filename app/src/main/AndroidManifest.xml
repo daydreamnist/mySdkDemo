@@ -19,29 +19,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".activity.WebControlActivity"
+            android:label="Device WebControl"></activity>
         <activity
             android:name=".activity.DeviceProbeActivity"
-            android:label="Device Probe">
-        </activity>
-
+            android:label="Device Probe"></activity>
         <activity
             android:name=".activity.DeviceConfigActivity"
-            android:label="Device Config">
-        </activity>
-
+            android:label="Device Config"></activity>
         <activity
             android:name=".activity.LoginActivity"
-            android:label="@string/title_activity_login">
-        </activity>
-
+            android:label="@string/title_activity_login"></activity>
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
