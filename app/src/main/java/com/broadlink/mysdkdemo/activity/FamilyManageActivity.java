@@ -3,6 +3,7 @@ package com.broadlink.mysdkdemo.activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -18,6 +20,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.broadlink.mysdkdemo.R;
 import com.broadlink.mysdkdemo.commonUtils.MyProgressDialog;
 import com.broadlink.mysdkdemo.commonUtils.OnItemClickListener;
@@ -32,6 +35,7 @@ import java.util.List;
 import cn.com.broadlink.family.BLFamily;
 import cn.com.broadlink.family.params.BLFamilyAllInfo;
 import cn.com.broadlink.family.params.BLFamilyBaseInfo;
+import cn.com.broadlink.family.params.BLFamilyInfo;
 import cn.com.broadlink.family.result.BLFamilyBaseInfoListResult;
 import cn.com.broadlink.family.result.BLFamilyInfoResult;
 import cn.com.broadlink.sdk.BLLet;
@@ -50,6 +54,9 @@ public class FamilyManageActivity extends AppCompatActivity implements View.OnCl
     private TextInputEditText mEt_familyAddCity;
     private ProgressBar mPb_familyAdd;
     private Button mBtn_addFamily;
+
+
+    public static final String FAMILY_ID = "family_id";
 
 
     @Override
@@ -121,7 +128,15 @@ public class FamilyManageActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onItemClick(View view, int position) {
-
+        JSONObject blFamilyBaseInfo = (JSONObject) simpleRecyclerAdapter.getDatas().get(position);
+        Intent intent = new Intent();
+        String familyId= blFamilyBaseInfo.getObject("BLFamilyInfo", BLFamilyInfo.class).getFamilyId();
+        if (TextUtils.isEmpty(familyId)){
+            return;
+        }
+        intent.putExtra(FAMILY_ID,familyId);
+        intent.setClass(FamilyManageActivity.this,FamilyOperationActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -191,7 +206,6 @@ public class FamilyManageActivity extends AppCompatActivity implements View.OnCl
             super.onPostExecute(strings);
             myProgressDialog.dismiss();
             families.addAll(strings);
-//            simpleRecyclerAdapter = new SimpleRecyclerAdapter(families,R.layout.view_common_itme,R.id.mTv_commonItem);
             simpleRecyclerAdapter.setDatas(families);
             simpleRecyclerAdapter.setItemViewId(R.layout.view_common_itme);
             simpleRecyclerAdapter.setContentViewId(R.id.mTv_commonItem);
