@@ -12,16 +12,18 @@ import com.alibaba.fastjson.JSON;
 
 import java.util.List;
 
-public class SimpleRecyclerAdapter extends RecyclerView.Adapter<SimpleRecyclerAdapter.ViewHolder> {
+public class SimpleRecyclerAdapter<T> extends RecyclerView.Adapter<SimpleRecyclerAdapter.ViewHolder> {
 
 
-    private List<Object> datas ;
+    private List<T> datas ;
     private int itemViewId;
     private int contentViewId;
     private OnItemClickListener onItemClickListener;
 
+    public SimpleRecyclerAdapter() {
+    }
 
-    public SimpleRecyclerAdapter(List<Object> datas, int itemViewId, int contentViewId) {
+    public SimpleRecyclerAdapter(List<T> datas, int itemViewId, int contentViewId) {
         this.datas = datas;
         this.itemViewId = itemViewId;
         this.contentViewId = contentViewId;
@@ -36,26 +38,30 @@ public class SimpleRecyclerAdapter extends RecyclerView.Adapter<SimpleRecyclerAd
     public SimpleRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(itemViewId,viewGroup,false);
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("setOnClickListener","click");
-                onItemClickListener.onItemClick(v, (Integer) v.getTag());
-            }
-        });
+        if (onItemClickListener != null){
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("setOnClickListener","click");
 
-        itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                Log.d("setOnClickListener","long click");
-                onItemClickListener.onItemLongClick(v,(Integer) v.getTag());
-                return true;
-            }
-        });
+                    onItemClickListener.onItemClick(v, (Integer) v.getTag());
+                }
+            });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Log.d("setOnClickListener","long click");
+                    onItemClickListener.onItemLongClick(v,(Integer) v.getTag());
+                    return true;
+                }
+            });
+        }
+
         return new ViewHolder(itemView);
     }
 
-    public List<Object> getDatas(){
+    public List<T> getDatas(){
         return this.datas;
     }
 
@@ -63,7 +69,11 @@ public class SimpleRecyclerAdapter extends RecyclerView.Adapter<SimpleRecyclerAd
     @Override
     public void onBindViewHolder(@NonNull SimpleRecyclerAdapter.ViewHolder viewHolder, int i) {
         Object data = datas.get(i);
-        viewHolder.mTv_content.setText(JSON.toJSONString(data,true));
+        if (data instanceof String){
+            viewHolder.mTv_content.setText((String)data);
+        }else {
+            viewHolder.mTv_content.setText(JSON.toJSONString(data,true));
+        }
         viewHolder.itemView.setTag(i);
     }
 
@@ -72,7 +82,7 @@ public class SimpleRecyclerAdapter extends RecyclerView.Adapter<SimpleRecyclerAd
         return datas.size();
     }
 
-    public void addItem(Object o){
+    public void addItem(T o){
         datas.add(o);
         notifyItemInserted(datas.size());
     }
@@ -98,5 +108,15 @@ public class SimpleRecyclerAdapter extends RecyclerView.Adapter<SimpleRecyclerAd
         }
     }
 
+    public void setDatas(List<T> datas) {
+        this.datas = datas;
+    }
 
+    public void setItemViewId(int itemViewId) {
+        this.itemViewId = itemViewId;
+    }
+
+    public void setContentViewId(int contentViewId) {
+        this.contentViewId = contentViewId;
+    }
 }

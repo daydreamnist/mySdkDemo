@@ -6,4 +6,5 @@
     <item android:id="@+id/query_ui_version" android:title="query_ui_version"/>
     <item android:id="@+id/download_ui" android:title="download_ui"/>
     <item android:id="@+id/web_control" android:title="web_control"/>
+    <item android:id="@+id/DNA_control" android:title="DNA_control"/>
 </menu>

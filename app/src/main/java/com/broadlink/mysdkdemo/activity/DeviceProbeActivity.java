@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -24,6 +25,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.sdk.android.ams.common.util.StringUtil;
 import com.broadlink.mysdkdemo.R;
@@ -42,6 +44,7 @@ import cn.com.broadlink.sdk.data.controller.BLDNADevice;
 import cn.com.broadlink.sdk.interfaces.controller.BLDeviceScanListener;
 import cn.com.broadlink.sdk.result.controller.BLDownloadScriptResult;
 import cn.com.broadlink.sdk.result.controller.BLDownloadUIResult;
+import cn.com.broadlink.sdk.result.controller.BLPairResult;
 import cn.com.broadlink.sdk.result.controller.BLQueryResoureVersionResult;
 
 public class DeviceProbeActivity extends AppCompatActivity implements View.OnClickListener, OnItemClickListener {
@@ -155,6 +158,7 @@ public class DeviceProbeActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onItemClick(View view,int po) {
 
+
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -166,11 +170,30 @@ public class DeviceProbeActivity extends AppCompatActivity implements View.OnCli
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                BLDNADevice device = (BLDNADevice) simpleRecyclerAdapter.getDatas().get(position);
-
+                final BLDNADevice device = (BLDNADevice) simpleRecyclerAdapter.getDatas().get(position);
+                Intent intent = new Intent();
+                intent.putExtra(SCRIPT_DOWNLOAD_RESULT,blDownloadScriptResult);
+                intent.putExtra(UI_DOWNLOAD_RESULT,blDownloadUIResult);
+                intent.putExtra("device",device);
+                intent.putExtra("INTENT_DEVICE",device);
                 switch (item.getItemId()){
                     case R.id.add_to_sdk:
-                        BLLet.Controller.addDevice(device);
+                        final Thread thread = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                BLPairResult re = BLLet.Controller.pair(device);
+                                if (re != null && re.succeed()){
+                                    device.setKey(re.getKey());
+                                    device.setId(re.getId());
+                                    BLLet.Controller.addDevice(device);
+
+                                }
+
+                                Log.d("BLPairResult", JSON.toJSONString(re));
+                            }
+                        });
+                        thread.start();
+
                         Toast.makeText(DeviceProbeActivity.this,"already add to Sdk",Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.query_script_version:
@@ -195,11 +218,11 @@ public class DeviceProbeActivity extends AppCompatActivity implements View.OnCli
                             break;
                         }
 
-                        Intent intent = new Intent();
                         intent.setClass(DeviceProbeActivity.this,WebControlActivity.class);
-                        intent.putExtra(SCRIPT_DOWNLOAD_RESULT,blDownloadScriptResult);
-                        intent.putExtra(UI_DOWNLOAD_RESULT,blDownloadUIResult);
-                        intent.putExtra("device",device);
+                        startActivity(intent);
+                        break;
+                    case R.id.DNA_control:
+                        intent.setClass(DeviceProbeActivity.this,DNAControlActivity.class);
                         startActivity(intent);
                         break;
                 }
@@ -226,6 +249,8 @@ public class DeviceProbeActivity extends AppCompatActivity implements View.OnCli
                 .create();
         alertDialog.show();
     }
+
+
 
     class QueryUIVersionTask extends AsyncTask<String,Void, BLQueryResoureVersionResult>{
 
@@ -343,46 +368,6 @@ public class DeviceProbeActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-
-    public class MyDialog extends AlertDialog {
-        LayoutInflater inflater;
-        View view;
-        ProgressBar progressBar;
-        TextView mTv_title;
-        TextView mTv_content;
-        AlertDialog.Builder builder;
-        MyDialog myDialog;
-        Context context;
-
-        protected MyDialog(Context context) {
-            super(context);
-            context = this.context;
-            inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.view_common_popup_window,null);
-            progressBar = view.findViewById(R.id.mPb_popup);
-            mTv_title = view.findViewById(R.id.mTv_popup_title);
-            mTv_content = view.findViewById(R.id.mTv_popup_content);
-            builder = new AlertDialog.Builder(context);
-            builder.setView(view);
-        }
-
-
-        AlertDialog.Builder getBuilder(){
-            return builder;
-        }
-
-        MyDialog setTitle (String title){
-            progressBar.setVisibility(View.GONE);
-            mTv_title.setVisibility(View.VISIBLE);
-            mTv_title.setText(title);
-            return this;
-        }
-
-        MyDialog setOnLoading (){
-            progressBar.setVisibility(View.VISIBLE);
-            return this;
-        }
-    }
 
 
 }

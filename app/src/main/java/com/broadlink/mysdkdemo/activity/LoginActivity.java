@@ -37,6 +37,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public static final String USER_INFO_SP = "userInfo";
     public static final String USER_PHONE_SP = "userPhone";
+    public static final  String USER_PASSWD = "passwd";
+    public static final String LOGIN_SESSION = "session";
+    public static final String USER_ID = "userId";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +86,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public class LoginTask extends AsyncTask<String, Void, BLLoginResult>{
         private String phone;
         private String passwd;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -118,6 +123,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             SharedPreferences.Editor editor = mSharedPreferences.edit();
             editor.putString(USER_INFO_SP,loginResultStr);
             editor.putString(USER_PHONE_SP,blLoginResult.getPhone());
+            editor.putString(USER_ID,blLoginResult.getUserid());
+            editor.putString(USER_PASSWD,passwd);
+            editor.putString(LOGIN_SESSION,blLoginResult.getLoginsession());
             editor.commit();
 
             Intent intent = new Intent();
