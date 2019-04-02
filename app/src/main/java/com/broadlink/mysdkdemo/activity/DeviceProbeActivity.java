@@ -136,7 +136,11 @@ public class DeviceProbeActivity extends AppCompatActivity implements View.OnCli
 
     }
 
+
     private void addDevices2View() {
+        if (devices.isEmpty()){
+            return;
+        }
         for (BLDNADevice device: devices){
             simpleRecyclerAdapter.addItem(device);
         }
@@ -203,7 +207,7 @@ public class DeviceProbeActivity extends AppCompatActivity implements View.OnCli
                         new DownloadScriptTask("download script").execute(device.getPid());
                         break;
                     case R.id.query_ui_version:
-                        new QueryScriptVersionTask("query UI version").execute(device.getPid());
+                        new QueryUIVersionTask("query UI version").execute(device.getPid());
                         break;
                     case R.id.download_ui:
                         new DownloadUITask("download UI").execute(device.getPid());

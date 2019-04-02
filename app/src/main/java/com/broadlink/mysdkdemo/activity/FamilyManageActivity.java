@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -128,13 +129,17 @@ public class FamilyManageActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onItemClick(View view, int position) {
-        JSONObject blFamilyBaseInfo = (JSONObject) simpleRecyclerAdapter.getDatas().get(position);
+
+        String s = (String) simpleRecyclerAdapter.getDatas().get(position);
+        Log.d("onItemClick",s);
+        BLFamilyBaseInfo blFamilyBaseInfo = JSON.parseObject(s,BLFamilyBaseInfo.class);
+
         Intent intent = new Intent();
-        String familyId= blFamilyBaseInfo.getObject("BLFamilyInfo", BLFamilyInfo.class).getFamilyId();
-        if (TextUtils.isEmpty(familyId)){
-            return;
-        }
-        intent.putExtra(FAMILY_ID,familyId);
+//        String familyId= blFamilyBaseInfo.getObject("BLFamilyInfo", BLFamilyInfo.class).getFamilyId();
+//        if (TextUtils.isEmpty(familyId)){
+//            return;
+//        }
+        intent.putExtra(FAMILY_ID,blFamilyBaseInfo.getFamilyInfo().getFamilyId());
         intent.setClass(FamilyManageActivity.this,FamilyOperationActivity.class);
         startActivity(intent);
     }
