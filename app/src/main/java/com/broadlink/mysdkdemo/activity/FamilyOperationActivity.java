@@ -3,8 +3,10 @@ package com.broadlink.mysdkdemo.activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Looper;
+import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
@@ -73,6 +75,9 @@ public class FamilyOperationActivity extends AppCompatActivity implements View.O
 
     AlertDialog addAlertDialog;
     HashSet<BLDNADevice> devices;
+
+    public static final String PROBED_DEVICES = "probedDevices";
+    public static final String FAMILY_ID =  "familyId";
 
     Map<String,BLDNADevice> deviceMap;
 
@@ -269,7 +274,14 @@ public class FamilyOperationActivity extends AppCompatActivity implements View.O
                     Looper.loop();
                     return;
                 }else {
-                    deviceMap = new HashMap<>();
+                    List<BLFamilyRoomInfo> roomInfoList = blFamilyAllInfo.getRoomInfos();
+                    Intent intent = new Intent();
+                    intent.setClass(FamilyOperationActivity.this,DevicesListActivity.class);
+                    intent.putParcelableArrayListExtra(PROBED_DEVICES,new ArrayList<Parcelable>(devices));
+                    intent.putExtra(FAMILY_ID,familyId);
+
+                    startActivity(intent);
+/*                    deviceMap = new HashMap<>();
                     strings = new String[devices.size()];
                     int i = 0;
                     for (BLDNADevice device:devices){
@@ -277,10 +289,10 @@ public class FamilyOperationActivity extends AppCompatActivity implements View.O
                             strings[i++] = device.getName()+" ["+device.getMac()+"]";
                             deviceMap.put(device.getName(),device);
                         }
-                    }
+                    }*/
                 }
 
-                final String[] finalStrings = strings;
+/*                final String[] finalStrings = strings;
                 Looper.prepare();
                 AlertDialog itemsDialog = new AlertDialog.Builder(FamilyOperationActivity.this)
                         .setItems(strings, new DialogInterface.OnClickListener() {
@@ -294,7 +306,7 @@ public class FamilyOperationActivity extends AppCompatActivity implements View.O
                         .setTitle("probed devices")
                         .create();
                 itemsDialog.show();
-                Looper.loop();
+                Looper.loop();*/
             }
         },4000);
     }
