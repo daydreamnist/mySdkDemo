@@ -52,7 +52,7 @@ import cn.com.broadlink.sdk.result.controller.BLPairResult;
 public class FamilyOperationActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView mIv_familyIcon;
-    private TextView mTv_familyId;
+    private TextView mTv_familyName;
     private TextView mTv_familyInfo;
     private TextView mTv_roomsManage;
     private TextView mTv_devicesManage;
@@ -104,14 +104,15 @@ public class FamilyOperationActivity extends AppCompatActivity implements View.O
         familyId = blFamilyInfo.getFamilyId();
         familyVersion = blFamilyInfo.getFamilyVersion();
         familyName = blFamilyInfo.getFamilyName();
-        mTv_familyId.setText(familyId);
-        mTv_familyInfo.setText(familyName+"\n"+familyVersion);
+        mTv_familyName.setText(familyName);
+        mTv_familyInfo.setText(familyId+"\n"+familyVersion);
     }
 
     private void findViews() {
         ActivityFamilyOperate = findViewById(R.id.ActivityFamilyOperate);
         mIv_familyIcon = findViewById(R.id.mIv_familyIcon);
-        mTv_familyId = findViewById(R.id.mTv_familyId);
+        mTv_familyName = findViewById(R.id.mTv_familyName);
+        mTv_familyName.setOnClickListener(this);
         mTv_familyInfo = findViewById(R.id.mTv_familyInfo);
         mTv_familyInfo.setOnClickListener(this);
         mTv_roomsManage = findViewById(R.id.mTv_roomsManage);
@@ -136,7 +137,9 @@ public class FamilyOperationActivity extends AppCompatActivity implements View.O
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.mTv_familyName:
             case R.id.mTv_familyInfo:
+                modifyFamilyInfo();
                 break;
             case R.id.mTv_roomsManage:
                 showRooms();
@@ -157,6 +160,9 @@ public class FamilyOperationActivity extends AppCompatActivity implements View.O
                 break;
 
         }
+    }
+
+    private void modifyFamilyInfo() {
     }
 
     private void shareFamily() {
@@ -253,13 +259,31 @@ public class FamilyOperationActivity extends AppCompatActivity implements View.O
         devices = new HashSet<>();
         BLLet.Controller.setOnDeviceScanListener(new BLDeviceScanListener() {
             @Override
-            public void onDeviceUpdate(BLDNADevice device, boolean isNewDevice) {
-                BLPairResult pairResult = BLLet.Controller.pair(device);
-                if (pairResult.succeed()){
-                    device.setKey(pairResult.getKey());
-                    device.setId(pairResult.getId());
-                    devices.add(device);
-                }
+            public void onDeviceUpdate(final BLDNADevice device, boolean isNewDevice) {
+
+                final Thread thread =new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        BLPairResult pairResult = BLLet.Controller.pair(device);
+                        if (pairResult.succeed()){
+                            BLLet.Controller.addDevice(device);
+                            device.setKey(pairResult.getKey());
+                            device.setId(pairResult.getId());
+                            devices.add(device);
+                            Looper.prepare();
+                            Toast.makeText(FamilyOperationActivity.this,"device pair success",Toast.LENGTH_SHORT).show();
+                            Looper.loop();
+                        }else {
+                            Looper.prepare();
+                            Toast.makeText(FamilyOperationActivity.this,"device pair fail",Toast.LENGTH_SHORT).show();
+                            Looper.loop();
+                            return;
+                        }
+
+                    }
+                });
+                thread.start();
+
             }
         });
         BLLet.Controller.startProbe(3000);
@@ -291,32 +315,8 @@ public class FamilyOperationActivity extends AppCompatActivity implements View.O
                     intent.putExtra(FAMILY_ID,familyId);
 
                     startActivity(intent);
-/*                    deviceMap = new HashMap<>();
-                    strings = new String[devices.size()];
-                    int i = 0;
-                    for (BLDNADevice device:devices){
-                        if (BLLet.Controller.pair(device).succeed()){
-                            strings[i++] = device.getName()+" ["+device.getMac()+"]";
-                            deviceMap.put(device.getName(),device);
-                        }
-                    }*/
+
                 }
-
-/*                final String[] finalStrings = strings;
-                Looper.prepare();
-                AlertDialog itemsDialog = new AlertDialog.Builder(FamilyOperationActivity.this)
-                        .setItems(strings, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                                Log.d("showDevices",JSON.toJSONString(deviceMap.get(finalStrings[which]),true));
-                                //TODO:add device to family
-                            }
-                        })
-                        .setTitle("probed devices")
-                        .create();
-                itemsDialog.show();
-                Looper.loop();*/
             }
         },4000);
     }

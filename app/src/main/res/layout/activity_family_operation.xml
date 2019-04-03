@@ -28,7 +28,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/mTv_familyId"
+                android:id="@+id/mTv_familyName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -49,7 +49,7 @@
                 android:clickable="true"
                 app:layout_constraintHeight_max="30dp"
                 app:layout_constraintLeft_toRightOf="@+id/mIv_familyIcon"
-                app:layout_constraintTop_toBottomOf="@+id/mTv_familyId" />
+                app:layout_constraintTop_toBottomOf="@+id/mTv_familyName" />
 
         </android.support.constraint.ConstraintLayout>
 

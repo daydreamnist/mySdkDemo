@@ -44,8 +44,8 @@ public class MyDemoApplication extends Application {
         // 初始化核心库
 //        BLLet.init(this, blConfigParam);
 
-        String packageName = "com.broadlink.blappsdkdemo";
-        String license = "4oQxAHVFYnnY7HPuDlYnm0I6pGcRvFTh/Ct2Vv+/5qZDpJJiIweBn2RUUA6oE8InRDV+XAAAAABz4LOxmXdGndIQ0J762DN4lXimLcoYN1h90T3OlpYrQrNgvm0/7+Kdmrgfawtr+QWBY+UBaf8hxk19tobFrLsFsEkbxXTfoUSQjDzWcfVjcAAAAAA=";
+        String packageName = "com.broadlink.tstx.aquarium";
+        String license = "kd0wkifaoCmmm0BK1uDHR3uEzWRLO2VtggpMGwQNlgicrYEo1iCTWHsSNAQVmQwOWJrjWwAAAABOHV2hNQMsFnSl5y6kOln57mTlhKNgzDCDUZSA/3g5iLw4Esa5voXXSiTnlt81UGwPTEfrO/iV10fVtagVSekFoK+bfB/+RsxsC3L59F3t4AAAAAA=";
         blConfigParam.put(BLConfigParam.CONTROLLER_AUTH_PACKAGE_NAME,packageName);
         BLLet.init(this,license,"",blConfigParam);
 

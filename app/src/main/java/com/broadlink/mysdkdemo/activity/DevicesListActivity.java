@@ -118,7 +118,6 @@ public class DevicesListActivity extends AppCompatActivity implements OnItemClic
                         deviceInfo.setLock(selectedDevice.isLock());
 
                         new AddDevice2FamilyTask().execute(moduleInfo,blFamilyAllInfo.getFamilyInfo(),deviceInfo,null);
-                        //TODO:run the task
                     }
                 })
                 .create();
@@ -152,7 +151,7 @@ public class DevicesListActivity extends AppCompatActivity implements OnItemClic
         protected void onPreExecute() {
             super.onPreExecute();
             alertDialog = new MyProgressDialog(DevicesListActivity.this,"init familyInfo").getInstance().create();
-
+            alertDialog.show();
         }
 
         @Override

@@ -87,6 +87,11 @@ public class SimpleRecyclerAdapter<T> extends RecyclerView.Adapter<SimpleRecycle
         notifyItemInserted(datas.size());
     }
 
+    public void removeItem(int position){
+        datas.remove(position);
+        notifyItemRemoved(position);
+    }
+
     public void resetList(){
 
         for (int i = 0;i<datas.size();i++) {

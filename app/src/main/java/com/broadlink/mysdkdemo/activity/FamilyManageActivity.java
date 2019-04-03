@@ -3,6 +3,7 @@ package com.broadlink.mysdkdemo.activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
@@ -23,6 +24,7 @@ import android.widget.ProgressBar;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.broadlink.mysdkdemo.R;
+import com.broadlink.mysdkdemo.commonUtils.LoadingAsyncTask;
 import com.broadlink.mysdkdemo.commonUtils.MyProgressDialog;
 import com.broadlink.mysdkdemo.commonUtils.OnItemClickListener;
 import com.broadlink.mysdkdemo.commonUtils.SimpleRecyclerAdapter;
@@ -33,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import cn.com.broadlink.base.BLBaseResult;
 import cn.com.broadlink.family.BLFamily;
 import cn.com.broadlink.family.params.BLFamilyAllInfo;
 import cn.com.broadlink.family.params.BLFamilyBaseInfo;
@@ -132,20 +135,76 @@ public class FamilyManageActivity extends AppCompatActivity implements View.OnCl
 
         String s = (String) simpleRecyclerAdapter.getDatas().get(position);
         Log.d("onItemClick",s);
-        BLFamilyBaseInfo blFamilyBaseInfo = JSON.parseObject(s,BLFamilyBaseInfo.class);
+        BLFamilyInfo blFamilyInfo = JSON.parseObject(s,BLFamilyInfo.class);
 
         Intent intent = new Intent();
-//        String familyId= blFamilyBaseInfo.getObject("BLFamilyInfo", BLFamilyInfo.class).getFamilyId();
-//        if (TextUtils.isEmpty(familyId)){
-//            return;
-//        }
-        intent.putExtra(FAMILY_ID,blFamilyBaseInfo.getFamilyInfo().getFamilyId());
+        intent.putExtra(FAMILY_ID,blFamilyInfo.getFamilyId());
         intent.setClass(FamilyManageActivity.this,FamilyOperationActivity.class);
         startActivity(intent);
     }
 
     @Override
-    public void onItemLongClick(View view, int position) {
+    public void onItemLongClick(View view, final int position) {
+
+        AlertDialog alertDialog = new AlertDialog.Builder(FamilyManageActivity.this)
+                .setTitle("operations")
+                .setItems(new String[]{"delete familyInfo"}, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if ( which == 0 ){
+                            showConfirmDialog((String) simpleRecyclerAdapter.getDatas().get(position),position);
+                        }
+                    }
+                })
+                .create();
+        alertDialog.show();
+
+    }
+
+    private void showConfirmDialog(final String s, final int position) {
+        final BLFamilyInfo blFamilyInfo = JSON.parseObject(s,BLFamilyInfo.class);
+        AlertDialog alertDialog = new AlertDialog.Builder(FamilyManageActivity.this)
+                .setTitle("Confirm")
+                .setMessage("confirm to delete family: "+blFamilyInfo.getFamilyName())
+                .setPositiveButton("confirm", new DialogInterface.OnClickListener() {
+
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        new DeleteFamilyInfoTask(FamilyManageActivity.this,"delete ing").execute(blFamilyInfo.getFamilyId(),blFamilyInfo.getFamilyVersion(),String.valueOf(position));
+                    }
+                })
+                .create();
+        alertDialog.show();
+    }
+
+
+    class DeleteFamilyInfoTask extends LoadingAsyncTask<BLBaseResult> {
+
+        int position;
+        public DeleteFamilyInfoTask(Context mContext, String title) {
+            super(mContext, title);
+        }
+
+        @Override
+        public void onPre() {
+
+        }
+
+        @Override
+        public BLBaseResult run(String... strings) {
+            position = Integer.valueOf(strings[2]);
+            return BLFamily.delFamily(strings[0],strings[1]);
+        }
+
+        @Override
+        public void onPost(BLBaseResult blBaseResult) {
+            if (blBaseResult.succeed()){
+                simpleRecyclerAdapter.removeItem(position);
+            }
+        }
+
 
     }
 
@@ -171,6 +230,7 @@ public class FamilyManageActivity extends AppCompatActivity implements View.OnCl
             super.onPostExecute(blFamilyInfoResult);
 
             alertDialog.dismiss();
+            simpleRecyclerAdapter.addItem(blFamilyInfoResult.getFamilyInfo());
         }
     }
 
@@ -196,7 +256,7 @@ public class FamilyManageActivity extends AppCompatActivity implements View.OnCl
                 List<BLFamilyBaseInfo> blFamilyBaseInfos = new ArrayList<>();
                 if (!(blFamilyBaseInfos=blFamilyBaseInfoListResult.getInfoList()).isEmpty()){
                     for (BLFamilyBaseInfo baseInfo : blFamilyBaseInfos){
-                        result.add(JSON.toJSONString(baseInfo,true));
+                        result.add(JSON.toJSONString(baseInfo.getFamilyInfo(),true));
                     }
                 }
 

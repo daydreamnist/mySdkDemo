@@ -2,6 +2,7 @@ package com.broadlink.mysdkdemo.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Looper;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,7 +20,9 @@ import java.util.List;
 
 import cn.com.broadlink.family.params.BLFamilyAllInfo;
 import cn.com.broadlink.family.params.BLFamilyDeviceInfo;
+import cn.com.broadlink.sdk.BLLet;
 import cn.com.broadlink.sdk.data.controller.BLDNADevice;
+import cn.com.broadlink.sdk.result.controller.BLPairResult;
 
 public class FamilyDeviceListActivity extends AppCompatActivity implements OnItemClickListener {
 
@@ -63,27 +66,36 @@ public class FamilyDeviceListActivity extends AppCompatActivity implements OnIte
     @Override
     public void onItemLongClick(View view, final int position) {
         AlertDialog alertDialog = new AlertDialog.Builder(FamilyDeviceListActivity.this)
-                .setItems(new String[]{"delete device from home","control device"}, new DialogInterface.OnClickListener() {
+                .setItems(new String[]{"delete device from home","pair device","control device"}, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         BLFamilyDeviceInfo deviceInfo = (BLFamilyDeviceInfo) simpleRecyclerAdapter.getDatas().get(position);
+
+                        final BLDNADevice device = new BLDNADevice();
+                        device.setPid(deviceInfo.getPid());
+                        device.setDid(deviceInfo.getDid());
+                        device.setKey(deviceInfo.getAeskey());
+                        device.setMac(deviceInfo.getMac());
+                        device.setId(deviceInfo.getTerminalId());
+                        device.setName(deviceInfo.getName());
+                        device.setType(deviceInfo.getType());
+                        device.setExtend(deviceInfo.getExtend());
+                        device.setState(1);
+
+
                         if (which == 0){
                             deleteDevice(deviceInfo);
-                        }else if (which == 1){
-                            BLDNADevice device = new BLDNADevice();
-                            device.setPid(deviceInfo.getPid());
-                            device.setDid(deviceInfo.getDid());
-                            device.setKey(deviceInfo.getAeskey());
-                            device.setMac(deviceInfo.getMac());
-                            device.setId(deviceInfo.getTerminalId());
-                            device.setName(deviceInfo.getName());
-                            device.setType(deviceInfo.getType());
-                            device.setExtend(deviceInfo.getExtend());
-                            device.setState(1);
+                        }else if (which == 1) {
+
+
+                        }else if (which == 2){
+
+
                             Intent intent = new Intent();
                             intent.setClass(FamilyDeviceListActivity.this,WebControlActivity.class);
                             intent.putExtra("device",device);
                             startActivity(intent);
+
                         }
                     }
                 })
