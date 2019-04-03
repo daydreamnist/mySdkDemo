@@ -19,9 +19,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.RoomsListActivity"></activity>
-        <activity android:name=".activity.DevicesListActivity" />
-        <activity android:name=".activity.FamilyOperationActivity" />
+        <activity
+            android:name=".activity.FamilyDeviceListActivity"
+            android:label="FamilyDevice List"></activity>
+        <activity
+            android:name=".activity.RoomsListActivity"
+            android:label="Room List" />
+        <activity
+            android:name=".activity.DevicesListActivity"
+            android:label="Device List" />
+        <activity
+            android:name=".activity.FamilyOperationActivity"
+            android:label="Family Detail" />
         <activity
             android:name=".activity.FamilyManageActivity"
             android:label="Family Manage" />

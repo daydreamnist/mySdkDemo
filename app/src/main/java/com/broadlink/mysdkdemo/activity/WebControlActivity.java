@@ -1,5 +1,6 @@
 package com.broadlink.mysdkdemo.activity;
 
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class WebControlActivity extends AppCompatActivity {
     public BLDNADevice device;
     private BLDownloadUIResult blDownloadUIResult;
     private BLDownloadScriptResult blDownloadScriptResult;
+    private ConstraintLayout mContentWebLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,8 @@ public class WebControlActivity extends AppCompatActivity {
     }
 
     private void initView() {
+
+        mContentWebLayout = findViewById(R.id.content_web_layout);
         CordovaInterface cordovaInterface = new CordovaInterfaceImpl(WebControlActivity.this){
 
             @Override
@@ -81,6 +85,52 @@ public class WebControlActivity extends AppCompatActivity {
         Log.d("WebControlActivity", JSON.toJSONString(blDownloadUIResult));
         Log.d("WebControlActivity", JSON.toJSONString(device));
 
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        systemWebView.onPause();
+        if (cordovaWebView != null) {
+            cordovaWebView.handlePause(true);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        systemWebView.onResume();
+        if (cordovaWebView != null) {
+            cordovaWebView.handleResume(true);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (cordovaWebView != null) {
+            cordovaWebView.handleDestroy();
+        }
+
+        mContentWebLayout.removeView(systemWebView);
+        systemWebView.removeAllViews();
+        systemWebView.destroy();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (cordovaWebView != null) {
+            cordovaWebView.handleStart();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (cordovaWebView != null) {
+            cordovaWebView.handleStop();
+        }
     }
 
 

@@ -47,6 +47,7 @@ import cn.com.broadlink.family.result.BLManageRoomResult;
 import cn.com.broadlink.sdk.BLLet;
 import cn.com.broadlink.sdk.data.controller.BLDNADevice;
 import cn.com.broadlink.sdk.interfaces.controller.BLDeviceScanListener;
+import cn.com.broadlink.sdk.result.controller.BLPairResult;
 
 public class FamilyOperationActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -78,6 +79,7 @@ public class FamilyOperationActivity extends AppCompatActivity implements View.O
 
     public static final String PROBED_DEVICES = "probedDevices";
     public static final String FAMILY_ID =  "familyId";
+    public static final String FAMILY_ALL_INFO =  "familyAllInfo";
 
     Map<String,BLDNADevice> deviceMap;
 
@@ -223,7 +225,10 @@ public class FamilyOperationActivity extends AppCompatActivity implements View.O
     }
 
     private void showDevices() {
-
+        Intent intent = new Intent();
+        intent.setClass(FamilyOperationActivity.this,FamilyDeviceListActivity.class);
+        intent.putExtra(FAMILY_ALL_INFO,JSON.toJSONString(blFamilyAllInfo));
+        startActivity(intent);
 
     }
 
@@ -249,7 +254,12 @@ public class FamilyOperationActivity extends AppCompatActivity implements View.O
         BLLet.Controller.setOnDeviceScanListener(new BLDeviceScanListener() {
             @Override
             public void onDeviceUpdate(BLDNADevice device, boolean isNewDevice) {
-                devices.add(device);
+                BLPairResult pairResult = BLLet.Controller.pair(device);
+                if (pairResult.succeed()){
+                    device.setKey(pairResult.getKey());
+                    device.setId(pairResult.getId());
+                    devices.add(device);
+                }
             }
         });
         BLLet.Controller.startProbe(3000);
@@ -376,15 +386,7 @@ public class FamilyOperationActivity extends AppCompatActivity implements View.O
         alertDialog.show();
     }
 
-    public class AddDevice2FamilyTask extends AsyncTask<Object,Void,Object>{
 
-        @Override
-        protected Object doInBackground(Object... objects) {
-
-            BLFamily.addModuleToFamily((BLFamilyModuleInfo)objects[0],(BLFamilyInfo)objects[1],(BLFamilyDeviceInfo)objects[2],(BLFamilyDeviceInfo)objects[3]);
-            return null;
-        }
-    }
 
     class initDataTask extends AsyncTask<String,Void,BLAllFamilyInfoResult>{
 
