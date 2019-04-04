@@ -1,6 +1,5 @@
 package com.broadlink.mysdkdemo.activity;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,14 +8,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.AsyncTask;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.broadlink.mysdkdemo.R;
-import com.broadlink.mysdkdemo.commonUtils.UserInfo;
+import com.broadlink.mysdkdemo.model.UserInfo;
 
 import cn.com.broadlink.account.BLAccount;
 import cn.com.broadlink.base.BLLoginResult;
@@ -106,6 +107,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         protected void onPostExecute(BLLoginResult blLoginResult) {
             super.onPostExecute(blLoginResult);
             mPbar_login.setVisibility(View.GONE);
+            Log.d("BLLoginResult--", JSON.toJSONString(blLoginResult));
             if (blLoginResult != null && blLoginResult.succeed()){
                 Toast.makeText(LoginActivity.this,"login success",Toast.LENGTH_SHORT).show();
                 doAfterLoginSuccess(blLoginResult);

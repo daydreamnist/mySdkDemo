@@ -1,4 +1,4 @@
-package com.broadlink.mysdkdemo.commonUtils;
+package com.broadlink.mysdkdemo.model;
 
 public class BLNetworkStatusInfo {
     private String status;

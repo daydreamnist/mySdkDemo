@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.broadlink.mysdkdemo.activity.WebControlActivity;
+import com.broadlink.mysdkdemo.model.BLJSDeviceInfo;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;

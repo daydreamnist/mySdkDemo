@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mBtn_device_config;
     private Button mBtn_device_probe;
     private Button mBtn_family_manage;
+    private Button mBtn_product_manage;
     private TextView mTv_loginInfo;
     private Context mContext;
     public static final String SHARE_PREFERENCE = "mSharedPreference";
@@ -51,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtn_device_probe.setOnClickListener(this);
         mBtn_family_manage = findViewById(R.id.mBtn_familyManage);
         mBtn_family_manage.setOnClickListener(this);
+        mBtn_product_manage = findViewById(R.id.mBtn_productManage);
+        mBtn_product_manage.setOnClickListener(this);
         mTv_loginInfo = findViewById(R.id.mTv_LoginInfo);
         mContext = MainActivity.this;
 
@@ -161,6 +164,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.mBtn_familyManage:
                 startActivity(FamilyManageActivity.class);
+                break;
+            case R.id.mBtn_productManage:
+                startActivity(ProductManageActivity.class);
+                break;
 
         }
     }

@@ -105,7 +105,6 @@ public class SimpleRecyclerAdapter<T> extends RecyclerView.Adapter<SimpleRecycle
 
     public class ViewHolder extends RecyclerView.ViewHolder  {
         private TextView mTv_content;
-        private OnItemClickListener onItemClickListener;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
