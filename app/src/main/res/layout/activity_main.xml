@@ -53,4 +53,12 @@
         android:text="product_Manage"
         />
 
+    <Button
+        android:id="@+id/mBtn_proDeviceConfig"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="product_Manage"
+        />
+
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,11 +34,12 @@ public class ProductManageActivity extends AppCompatActivity implements View.OnC
 
     public static String BASE_APP_MANAGE = "https://%sappservice.ibroadlink.com";
     public static String ADD_PRODUCT_DIRECTORY = "/ec4/v1/system/resource/categorylist";
-    public static final String PRODUCT_ICON() { return BASE_APP_MANAGE + "/ec4/v1/system/configfile";}
+    public static final String PRODUCT_ICON = "/ec4/v1/system/configfile";
 
 
     public static final String INTENT_CATEGORYID = "INTENT_CATEGORYID";
     public static final String INTENT_CATEGORYNAME = "INTENT_CATEGORYNAME";
+    static String lid;
 
     String responseStr;
     static Handler handler;
@@ -84,17 +86,24 @@ public class ProductManageActivity extends AppCompatActivity implements View.OnC
         mTv_categoryName = findViewById(R.id.mTv_categoryName);
     }
 
+    public static String getReqPath(String tarStr){
+        return String.format(BASE_APP_MANAGE, lid)+tarStr;
+
+    }
+
     private void initCategoryData() throws IOException {
-        String lid = BLLet.getLicenseId();
-        BASE_APP_MANAGE = String.format(BASE_APP_MANAGE, lid);
-        ADD_PRODUCT_DIRECTORY = BASE_APP_MANAGE+ADD_PRODUCT_DIRECTORY;
+        lid = BLLet.getLicenseId();
+//        BASE_APP_MANAGE = String.format(BASE_APP_MANAGE, lid);
+//        ADD_PRODUCT_DIRECTORY = BASE_APP_MANAGE+ADD_PRODUCT_DIRECTORY;
+        String reqPath = getReqPath(ADD_PRODUCT_DIRECTORY);
+        Log.d("PathUrl",reqPath);
         GetDNAKitDirParam getDNAKitDirParam = new GetDNAKitDirParam();
         getDNAKitDirParam.setProtocols(null);
         getDNAKitDirParam.setBrandid("");
 
         String reqBody = JSON.toJSONString(getDNAKitDirParam);
         Map<String, String> headers = initHeaders();
-        HttpUtils.postJSON(ProductManageActivity.this, ADD_PRODUCT_DIRECTORY,headers, reqBody, new Callback() {
+        HttpUtils.postJSON(ProductManageActivity.this, reqPath,headers, reqBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -120,7 +129,7 @@ public class ProductManageActivity extends AppCompatActivity implements View.OnC
         message.obj = dnaKitDirInfo;
         handler.sendMessage(message);
 
-        String iconUri = PRODUCT_ICON()+dnaKitDirInfo.getLink();
+        String iconUri = getReqPath(PRODUCT_ICON)+dnaKitDirInfo.getLink();
         new ImageLoadTask(iconUri, new loadCallback() {
             @Override
             public void onSuccess(Bitmap bitmap) {
@@ -139,7 +148,7 @@ public class ProductManageActivity extends AppCompatActivity implements View.OnC
         res.put("countryCode","1");
         res.put("language","zh-cn");
         res.put("licenseid","91dd309227daa029a69b404ad6e0c747");
-        res.put("loginsession","d1fe21111d4611cfc7dbab9ba151a90e");
+        res.put("loginsession","70fcd27984cacd5a86ac8c9804283736");
         res.put("system","android");
         res.put("userid","0447056e57028436f1a2f501a70ec7f6");
 

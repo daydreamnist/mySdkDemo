@@ -40,7 +40,12 @@ public abstract class LoadingAsyncTask<T extends BLBaseResult> extends AsyncTask
     protected void onPostExecute(T t) {
         super.onPostExecute(t);
         onPost(t);
-        Toast.makeText(mContext,t.succeed()?"operate success":"operate fail,"+t.getMsg(),Toast.LENGTH_SHORT).show();
+        try {
+            Toast.makeText(mContext,t.succeed()?"operate success":"operate fail,"+t.getMsg(),Toast.LENGTH_SHORT).show();
+
+        }catch (Exception e){
+
+        }
         alertDialog.dismiss();
 
     }

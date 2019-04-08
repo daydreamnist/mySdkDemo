@@ -2,6 +2,7 @@ package com.broadlink.mysdkdemo.commonUtils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -22,16 +23,23 @@ import cn.com.broadlink.sdk.BLLet;
 
 public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecyclerAdapter.ViewHolder> {
 
+    public static final String PRODUCT_ICON_PATH = "/ec4/v1/system/configfile";
+
     private OnItemClickListener onItemClickListener;
 
     private List<ProductInfo> productInfos;
 
     private Context context;
 
+
+    public ProductRecyclerAdapter(List<ProductInfo> productInfos) {
+        this.productInfos = productInfos;
+    }
+
     @NonNull
     @Override
     public ProductRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_product_item,null,false);
+        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_product_item,viewGroup,false);
         if (onItemClickListener != null){
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -56,6 +64,12 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
         ProductInfo productInfo = productInfos.get(i);
         viewHolder.mTv_productInfo.setText(productInfo.getName());
         String imageUrl = getProductIconUrl(productInfo.getShortcuticon());
+        new ImageLoadTask(imageUrl, new loadCallback() {
+            @Override
+            public void onSuccess(Bitmap bitmap) {
+                viewHolder.mIv_productIcon.setImageBitmap(bitmap);
+            }
+        }).execute();
     }
 
     private String getProductIconUrl(String shortcuticon) {
@@ -63,6 +77,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
         String basePath = String.format(ProductManageActivity.BASE_APP_MANAGE,lid);
 
         StringBuilder stringBuilder = new StringBuilder(basePath);
+        stringBuilder.append(PRODUCT_ICON_PATH);
         stringBuilder.append(shortcuticon);
         return stringBuilder.toString();
     }

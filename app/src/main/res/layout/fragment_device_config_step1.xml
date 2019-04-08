@@ -1,0 +1,25 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.broadlink.mysdkdemo.fragment.DeviceConfigStep1Fragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:drawableEnd="@android:drawable/ic_media_play"
+        android:gravity="center"
+        android:text="confirm the light is flashing"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/mBtn_step1Next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        android:text="next step" />
+
+</android.support.constraint.ConstraintLayout>
