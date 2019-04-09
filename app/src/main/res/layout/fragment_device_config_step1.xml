@@ -1,8 +1,9 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="55dp"
     tools:context="com.broadlink.mysdkdemo.fragment.DeviceConfigStep1Fragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -18,8 +19,8 @@
         android:id="@+id/mBtn_step1Next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="next step"
 
-        android:text="next step" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
